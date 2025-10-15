@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Drawer 年式チェッカー Pro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: 'Helvetica', sans-serif; text-align: center; margin-top: 50px; }
+    input { padding: 10px; width: 80%; font-size: 16px; }
+    button { padding: 10px 20px; margin-top: 10px; }
+    .result { margin-top: 30px; font-size: 18px; }
+    .card { background: #f9f9f9; border-radius: 10px; display: inline-block; padding: 20px; margin-top: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
+  </style>
+</head>
+<body>
+  <h2>👜 Drawer 年式チェッカー Pro</h2>
+  <form method="POST">
+    <input name="code" placeholder="例：6515-105-0475" required>
+    <button type="submit">検索</button>
+  </form>
+  {% if result %}
+    <div class="card">
+      <p><strong>品番：</strong>{{ result.code }}</p>
+      <p><strong>推定年式：</strong>{{ result.year }}（信頼度 {{ result.score }}%）</p>
+      <p><strong>平均価格：</strong>¥{{ "{:,}".format(result.avg_price) }}</p>
+    </div>
+  {% endif %}
+</body>
+</html>
